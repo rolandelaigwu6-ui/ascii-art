@@ -42,41 +42,70 @@
 // 	return nil
 // }
 
-package main 
+package main
 
 import (
 	"fmt"
 )
 
-func ValidateBanner(banner map[rune][]string)error {
+// func ValidateBanner(banner map[rune][]string)error {
+// 	const (
+// 		firstprintable = 32
+// 		lastprintable = 126
+// 		glyphHeigth = 8
+
+// 	)
+
+// 	if banner == nil {
+// 		return fmt.Errorf("invalid banner: banner is nil")
+// 	}
+
+// 	if len(banner) != int(lastprintable-firstprintable+1) {
+// 		return fmt.Errorf("invalid banner: character out-of ASCII Printable range expected 95 unit got %d", len(banner))
+// 	}
+// 	// for _, gly := range banner {
+// 	// 	if len(gly) != glyphHeigth {
+// 	// 		return fmt.Errorf("invalid banner: missing %d: expected 8 lines", len(gly))
+// 	// 	}
+// 	// }
+// 	for char := firstprintable; char <= lastprintable; char++ {
+
+// 		gly,ok := banner[rune(char)]
+// 		if !ok {
+// 			return fmt.Errorf("Invalid banner: character %q missing", char)
+// 		}
+// 		if len(gly) != glyphHeigth {
+// 			return fmt.Errorf("invalid banner: character %q is missing expected 8 line got %d",char, len(gly))
+// 		}
+// 	}
+// 	return nil
+// }
+
+func ValidateBanner(banner map[rune][]string) error {
 	const (
 		firstprintable = 32
-		lastprintable = 126
-		glyphHeigth = 8
-
+		lastprintable  = 126
+		glyphHeight    = 8
 	)
 
 	if banner == nil {
-		return fmt.Errorf("invalid banner: banner is nil")
+		return fmt.Errorf("Invalid Banner: Banner == nil")
 	}
 
 	if len(banner) != int(lastprintable-firstprintable+1) {
-		return fmt.Errorf("invalid banner: character out-of ASCII Printable range expected 95 unit got %d", len(banner))
+		return fmt.Errorf("Invalid Banner: Got %d expected 95 unit", len(banner))
 	}
-	// for _, gly := range banner {
-	// 	if len(gly) != glyphHeigth {
-	// 		return fmt.Errorf("invalid banner: missing %d: expected 8 lines", len(gly))
-	// 	}
-	// }
 	for char := firstprintable; char <= lastprintable; char++ {
-		
-		gly,ok := banner[rune(char)]
-		if !ok {
-			return fmt.Errorf("Invalid banner: character %q missing", char)
+		// _, ok := banner[rune(char)]
+		// if !ok {
+		// 	return fmt.Errorf("Invalid Banner: missing line")
+		// }
+		for y, gly := range banner {
+			if len(gly) != glyphHeight {
+				return fmt.Errorf("nvalid Banner: expected 8 lines got %q %d",y, len(gly))
+			}
 		}
-		if len(gly) != glyphHeigth {
-			return fmt.Errorf("invalid banner: character %q is missing expected 8 line got %d",char, len(gly))
-		} 
 	}
+
 	return nil
 }
