@@ -1,8 +1,8 @@
-// package main
+package main
 
-// import (
-// 	"fmt"
-// )
+import (
+	"fmt"
+)
 
 // func ValidateBanner(banner map[rune][]string) error {
 // 	const (
@@ -42,11 +42,11 @@
 // 	return nil
 // }
 
-package main
+// package main
 
-import (
-	"fmt"
-)
+// import (
+// 	"fmt"
+// )
 
 // func ValidateBanner(banner map[rune][]string)error {
 // 	const (
@@ -92,18 +92,16 @@ func ValidateBanner(banner map[rune][]string) error {
 		return fmt.Errorf("Invalid Banner: Banner == nil")
 	}
 
-	if len(banner) != int(lastprintable-firstprintable+1) {
+	if len(banner) != int(lastprintable - firstprintable+1) {
 		return fmt.Errorf("Invalid Banner: Got %d expected 95 unit", len(banner))
 	}
 	for char := firstprintable; char <= lastprintable; char++ {
-		// _, ok := banner[rune(char)]
-		// if !ok {
-		// 	return fmt.Errorf("Invalid Banner: missing line")
-		// }
-		for y, gly := range banner {
-			if len(gly) != glyphHeight {
-				return fmt.Errorf("nvalid Banner: expected 8 lines got %q %d",y, len(gly))
-			}
+		gly, ok := banner[rune(char)]
+		if !ok { 
+			return fmt.Errorf("Invalid Banner: missing line")
+		}
+		if len(gly) != glyphHeight {
+			return fmt.Errorf("nvalid Banner:character %q has %d rows expected %d", rune(char), len(gly), glyphHeight)
 		}
 	}
 
