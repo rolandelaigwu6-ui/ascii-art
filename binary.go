@@ -6,12 +6,12 @@ func Binary(text string) string {
 	var result []string
 
 	for _, char := range []byte(text) {
-		result = append(result, byteToBinary(char))
+		result = append(result, ByteToBinary(char))
 	}
 	return strings.Join(result, " ")
 }
  
-func byteToBinary(value byte) string {
+func ByteToBinary(value byte) string {
 	bits := make([]byte, 8)
 
 	for i := 7; i >= 0; i-- {
