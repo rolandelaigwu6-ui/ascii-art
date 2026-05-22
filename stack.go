@@ -1,13 +1,21 @@
 package main
 
-// func StackTwo(top []string, bottom []string) []string {
-// 	result := make([]string, 0, len(top)+len(bottom))
-// 	copy(result, top)
-// 	copy(result[len(top):], bottom)
-// 	// result = append(result, top...)
-// 	// result = append(result, bottom...)
-// 	return result
-// }
+func StackTwo(top []string, bottom []string) []string {
+	result := make([]string, 0, len(top)+len(bottom))
+	copy(result, top)
+	copy(result[len(top):], bottom)
+	// result = append(result, top...)
+	// result = append(result, bottom...)
+	return result
+}
+
+func StackAll(blocks [][]string) []string {
+	res := []string{}
+	for _, v := range blocks {
+		res = StackTwo(res, v)
+	}
+	return res
+}
 
 // func StackAll(blocks []string) []string {
 // 	result := []string{}
@@ -16,3 +24,5 @@ package main
 // 	}
 // 	return result
 // }
+
+
