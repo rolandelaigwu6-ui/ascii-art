@@ -29,6 +29,34 @@ func TestStringToArtSideBySide(t *testing.T) {
 	}
 }
 
+func TestStringToArtTaskThreeSingleDigitTwo(t *testing.T) {
+	got := StringToArt("2")
+	want := " ___ \n    |\n ___|\n|    \n|___ \n"
+
+	if got != want {
+		t.Errorf("StringToArt(%q) = %q, want %q", "2", got, want)
+	}
+}
+
+func TestStringToArtTaskThreeOneTwoThree(t *testing.T) {
+	got := StringToArt("123")
+	want := "  |   ___  ___ \n  |      |    |\n  |   ___| ___|\n  |  |        |\n  |  |___  ___|\n"
+
+	if got != want {
+		t.Errorf("StringToArt(%q) = %q, want %q", "123", got, want)
+	}
+}
+
+func TestStringToArtTaskThreeMultipleLines(t *testing.T) {
+	got := StringToArt("32\n13")
+	want := " ___  ___ \n    |    |\n ___| ___|\n    ||    \n ___||___ \n" +
+		"  |   ___ \n  |      |\n  |   ___|\n  |      |\n  |   ___|\n"
+
+	if got != want {
+		t.Errorf("StringToArt(%q) = %q, want %q", "32\\n13", got, want)
+	}
+}
+
 func TestStringToArtInvalidInput(t *testing.T) {
 	got := StringToArt("1a")
 
