@@ -1,38 +1,21 @@
 package main
 
 import (
-	"encoding/base64"
-	"flag"
+	"encoding/hex"
 	"fmt"
-	"os"
 )
 
+// Minimal demo: shows original, XOR-encrypted bytes (hex), and decrypted text
 func main() {
-	secretFlag := flag.String("secret", "", "secret message to hide (or set SECRET env)")
-	keyFlag := flag.String("key", "", "key for XOR cipher (or set KEY env)")
-	rawFlag := flag.Bool("raw", false, "print raw bytes instead of base64")
-	flag.Parse()
+	secret := "Hidden message: The eagle lands at dawn."
+	key := []byte("mykey")
 
-	secret := *secretFlag
-	if secret == "" {
-		secret = os.Getenv("SECRET")
-	}
-	key := *keyFlag
-	if key == "" {
-		key = os.Getenv("KEY")
-	}
-	if secret == "" || key == "" {
-		fmt.Println("Usage: go run . -secret=\"message\" -key=\"mykey\"")
-		fmt.Println("Or set env vars: SECRET and KEY")
-		return
-	}
+	fmt.Println("Original:", secret)
 
-	out := cipher(secret, []byte(key))
+	enc := cipher(secret, key)
+	fmt.Println("Encrypted (hex):", hex.EncodeToString(enc))
 
-	fmt.Println("--- GARBAGE STREAM ---")
-	if *rawFlag {
-		fmt.Println(string(out))
-	} else {
-		fmt.Println(base64.StdEncoding.EncodeToString(out))
-	}
+	// XORing again with the same key returns the original
+	dec := cipher(string(enc), key)
+	fmt.Println("Decrypted:", string(dec))
 }
