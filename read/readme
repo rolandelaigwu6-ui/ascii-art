@@ -1,0 +1,27 @@
+The tool you are about to build will receive two arguments: the name of a file containing a secret message that needs encoding (the input), and the name of the file where the encoded message should be written (the output).
+
+This version of the task is spy-themed. Your program should scan the message and apply the following transformations:
+
+Every instance of (.) should replace the word before it with the hexadecimal version of that word. In this case, the word before (.) will always be a decimal number. (Ex: "Agent 30 (.) entered the room" -> "Agent 1e entered the room")
+
+Every instance of (~) should encrypt the word before it into 8-bit binary ASCII. Each character in the word should become one 8-bit binary code, separated by spaces. (Ex: "HQ sent go (~)" -> "HQ sent 01100111 01101111")
+
+Every instance of (?) should decrypt the binary code before it back into text. In this case, the word before (?) will always be an 8-bit binary ASCII code. (Ex: "HQ received 01000001 (?)" -> "HQ received A")
+
+Every instance of (up) converts the word before it to uppercase. (Ex: "send the signal (up) !" -> "send the SIGNAL!")
+
+Every instance of (low) converts the word before it to lowercase. (Ex: "The GUARD is watching (low)" -> "The guard is watching")
+
+Every instance of (cap) converts the word before it to capitalized form. (Ex: "meet agent raven (cap)" -> "meet agent Raven")
+
+For (low), (up), and (cap), if a number appears next to it, like so: (low, <number>), it changes the previously specified number of words. (Ex: "the safe is open (up, 3)" -> "the SAFE IS OPEN")
+
+Every instance of the punctuation marks ., ,, !, ?, : and ; should be close to the previous word and spaced apart from the next one. (Ex: "The package is ready ,move now !!" -> "The package is ready, move now!!")
+
+Except if there are groups of punctuation like ... or !?. In this case, the program should format the text as in the following example: "Wait ... The camera moved" -> "Wait... The camera moved".
+
+The punctuation mark ' will always be found with another instance of it. They should be placed to the right and left of the words in the middle of them, without extra spaces. (Ex: "The password is ' shadow '" -> "The password is 'shadow'")
+
+If there is more than one word between the two ' ' marks, the program should place the marks next to the corresponding words. (Ex: "The message says: ' meet me behind the station '" -> "The message says: 'meet me behind the station'")
+
+Every instance of a should be turned into an if the next word begins with a vowel (a, e, i, o, u) or an h. (Ex: "A agent arrived late" -> "An agent arrived late")
