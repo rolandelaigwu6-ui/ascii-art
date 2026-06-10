@@ -22,3 +22,14 @@ Navigate into the newly extracted directory and launch the browser application b
 Bash
 cd tor-browser
 ./start-tor-browser.desktop
+
+
+encription..................
+annother way to achieve this 
+
+1. wget https://www.torproject.org/dist/torbrowser/14.5.7/tor-browser-linux-x86_64-14.5.7.tar.xz
+// to check the sytem cmpt version
+2.uname -m
+3. wget https://dist.torproject.org/torbrowser/15.0.15/tor-browser-linux-x86_64-15.0.15.tar.xz
+4. cd tor-browser
+5. ./start-tor-browser.desktop
