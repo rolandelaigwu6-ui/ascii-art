@@ -31,5 +31,9 @@ annother way to achieve this
 // to check the sytem cmpt version
 2.uname -m
 3. wget https://dist.torproject.org/torbrowser/15.0.15/tor-browser-linux-x86_64-15.0.15.tar.xz
-4. cd tor-browser
-5. ./start-tor-browser.desktop
+// extract the file from the achieve
+5. tar -xf tor-browser-linux-x86_64-15.0.15.tar.xz
+    // if the extraction fail or If that gives a permission error:
+6.chmod +x start-tor-browser.desktop
+7. cd tor-browser
+8. ./start-tor-browser.desktop
